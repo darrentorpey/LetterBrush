@@ -10,7 +10,11 @@ Created for 91 http://startcontinue.com
 */
 
 $(function() {
-  
+  window.lb_opts = window.lb_opts || {};
+  _.defaults(window.lb_opts, {
+    num: 5
+  });
+
   var scrollbarWidth = $("#vScroll").width();
   var scrollbarHeight = $("#vScroll").width();
   var scrollbarSize = $("#vScroll").width();
@@ -802,17 +806,27 @@ $(function() {
     }
   }
   
+  function maxWidth() {
+    return lb_opts.maxWidth || $(window).width();
+  }
+  
+  function maxHeight() {
+    return lb_opts.maxHeight || $(window).height();
+  }
+
   // window resize
   $(window).resize(function(e) {
     view.x = 0;
     view.y = 0;
     
-    var newWidthPixels = $(window).width() - MENU_WIDTH - scrollbarSize;
+    var newWidthPixels = maxWidth() - MENU_WIDTH - scrollbarSize;
     var newWidthTiles = Math.floor(newWidthPixels / view.scale);
     
-    var newHeightPixels = $(window).height() - scrollbarSize;
+    var newHeightPixels = maxHeight() - scrollbarSize;
     var newHeightTiles = Math.floor(newHeightPixels / view.scale);
     
+    $('#tools').css({ 'left' : maxWidth() - MENU_WIDTH + 'px' })
+
     if (textWidth <= newWidthTiles) {
       newHeightTiles++;
       newHeightPixels += view.scale;

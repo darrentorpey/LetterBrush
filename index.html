@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="lib/jqui/jquery-ui-1.8.16.custom.css">
     <link rel="stylesheet" href="letterbrush.css">
     <script src="lib/jquery.js"></script>
+    <script src="lib/underscore.js"></script>
     <script src="lib/jqui/jquery-ui-1.8.16.custom.min.js"></script>
     <script src="lib/jquery.mousewheel.min.js"></script>
     <script src="lib/inherit.js"></script>
@@ -15,7 +16,13 @@
   </head>
   </head>
   <body class="noSelect">
-    <canvas id="easel" width="800" height="600">
+    <script>
+      window.lb_opts = {
+        maxWidth: 400
+      }
+    </script>
+
+    <canvas id="easel" width="400" height="400">
       You need canvas!
     </canvas>
     <div id="hScroll">
